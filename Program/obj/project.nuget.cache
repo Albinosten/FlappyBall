@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "gDf0Z6yAUHllf2JMoKg/BD/rBstRyQmQVY4/x97CX/9O4r4fgvAT8EWE/xv8nHgeAljx0azMaAdvE8jbgfjpyg==",
+  "success": true,
+  "projectFilePath": "/Users/albinost/Programming/monogames/test project/FlappyBall/Program/newTestProj.csproj",
+  "expectedPackageFiles": [
+    "/Users/albinost/.nuget/packages/monogame.content.builder.task/3.8.0.1641/monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
+    "/Users/albinost/.nuget/packages/monogame.framework.desktopgl/3.8.0.1641/monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512"
+  ],
+  "logs": []
+}
