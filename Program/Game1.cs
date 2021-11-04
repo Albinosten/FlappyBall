@@ -33,16 +33,9 @@ namespace newTestProj
             base.LoadContent();
 
             this.spriteBatch = new SpriteBatchNew(this.GraphicsDevice);
-// var loaded = this.Content.Load<int>(""); //antar att den laddar in mina egna bilder eller vad f jag vill :D 
-//T'ad till vad som behövs
-            // TODO: use this.Content to load your game content here
+
             this.ball = new Ball(this.Content.Load<Texture2D>("ball"),this.graphics)
             {
-                // XPos = this.graphics.PreferredBackBufferWidth/2,
-                // //YPos = this.graphics.PreferredBackBufferHeight/2,
-                // XSpeed = 150,
-                // YSpeed = 90,
-                // scale = 0.3f,
                 DebugOutput = this.DebugOutput,
             };
 
@@ -96,13 +89,14 @@ namespace newTestProj
             if(this.timeSinceLastRow > timeToNextRow)
             {
                 this.timeSinceLastRow = 0;
-                // this.timeToNextRow = this.GetRandomBetween(2,6);
+
+                //TODO Basera på position ifrån senaste raden ist för tid. 
                 this.timeToNextRow = this.GetRandomBetween(1,3);
 
                 var row = new RectangleRow(this.graphics);
 
                 var height = this.graphics.PreferredBackBufferHeight;
-                row.InitializeRow(this.GetRandomBetween((Convert.ToInt32(height*0.2)), (Convert.ToInt32(height*0.8)))
+                row.InitializeRow(this.GetRandomBetween((Convert.ToInt32(height*0.3)), (Convert.ToInt32(height*1)))
                         , this.GetRandomBetween(100,140));
                 
                 this.Rows.Add(row);
@@ -119,8 +113,11 @@ namespace newTestProj
         private void UpdateRows(GameTime gameTime)
         {
             totalTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            var rampup = 16 + totalTime/8;
-            //Console.WriteLine(rampup);
+            var rampup = totalTime/8;
+            if(DebugOutput)
+            {
+                Console.WriteLine("rampup: " + rampup);
+            }
 
             var rowsOutOfBound = new List<RectangleRow>();
             for(int i = 0; i < this.Rows.Count; i++)
