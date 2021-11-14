@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace newTestProj
 {
     public static class Program
@@ -7,8 +6,6 @@ namespace newTestProj
         [STAThread]
         static void Main()
         {
-            // Function();
-
             using (var game = new Game1())
             {
                 game.DebugOutput = false;

@@ -10,6 +10,7 @@ namespace newTestProj
     {
         private IGraphicsDeviceManagerNew graphics;
         private ISpriteBatch spriteBatch;
+        
         private Ball ball;
         private IList<RectangleRow> Rows;
 
@@ -19,12 +20,14 @@ namespace newTestProj
             this.Content.RootDirectory = "Content";
             this.IsMouseVisible = false;
             this.DebugOutput = false;
+            this.distanceBetweenRows = this.graphics.PreferredBackBufferWidth/7;
         }
 
         protected override void Initialize()
         {
             this.Rows = new List<RectangleRow>();
-            
+            this.lastCreatedRow = null;
+
             base.Initialize();
         }
 
@@ -39,9 +42,9 @@ namespace newTestProj
                 DebugOutput = this.DebugOutput,
             };
 
-
             var row = new RectangleRow(this.graphics);
             row.InitializeRow(140, 120);
+            this.lastCreatedRow = row;
             this.Rows.Add(row);
         }
 
@@ -81,25 +84,28 @@ namespace newTestProj
         }
         private bool isFirstTime = true;
 
-        private int timeToNextRow = 5;
-        private float timeSinceLastRow;
+        private int distanceBetweenRows;
+        // private float distanceSinceLastRow;
+        private RectangleRow lastCreatedRow;
         public RectangleRow CreateNewRow(GameTime gameTime)
         {
-            this.timeSinceLastRow += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if(this.timeSinceLastRow > timeToNextRow)
+            // this.timeSinceLastRow += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // this.distanceSinceLastRow += lastCreatedRow?.XPos ?? 0;
+            if((lastCreatedRow?.XPos ?? 0) < this.graphics.PreferredBackBufferWidth - distanceBetweenRows)
             {
-                this.timeSinceLastRow = 0;
+
 
                 //TODO Basera på position ifrån senaste raden ist för tid. 
-                this.timeToNextRow = this.GetRandomBetween(1,3);
+                // this.timeToNextRow = this.GetRandomBetween(1,3);
 
                 var row = new RectangleRow(this.graphics);
 
                 var height = this.graphics.PreferredBackBufferHeight;
-                row.InitializeRow(this.GetRandomBetween((Convert.ToInt32(height*0.3)), (Convert.ToInt32(height*1)))
-                        , this.GetRandomBetween(100,140));
+                var startY = this.GetRandomBetween(Convert.ToInt32(height*0.3), Convert.ToInt32(height*0.8));
+                row.InitializeRow(startY, this.GetRandomBetween(100,140));
                 
                 this.Rows.Add(row);
+                this.lastCreatedRow = row;
                 return row;
             }
             return null;
