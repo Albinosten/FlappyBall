@@ -41,11 +41,6 @@ namespace newTestProj
             {
                 DebugOutput = this.DebugOutput,
             };
-
-            var row = new RectangleRow(this.graphics);
-            row.InitializeRow(140, 120);
-            this.lastCreatedRow = row;
-            this.Rows.Add(row);
         }
 
         public bool DebugOutput;
