@@ -10,6 +10,9 @@ namespace newTestProj
     {
         int PreferredBackBufferWidth {get;}
         int PreferredBackBufferHeight {get;}
+        bool IsFullScreen {get;set;}
+
+        void ApplyChanges();
     }
     public class GraphicsDeviceManagerNew : GraphicsDeviceManager , IGraphicsDeviceManagerNew
     {

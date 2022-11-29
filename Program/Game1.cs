@@ -174,13 +174,11 @@ namespace newTestProj
         {
             if(this.ball.IsColiding)
             {
-            this.GraphicsDevice.Clear(Color.Red);
-
+                this.GraphicsDevice.Clear(Color.Red);
             }
             else
             {
-            this.GraphicsDevice.Clear(Color.BlueViolet);
-
+                this.GraphicsDevice.Clear(Color.BlueViolet);
             }
 
             // TODO: Add your drawing code here

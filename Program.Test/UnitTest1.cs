@@ -40,6 +40,30 @@ namespace Program.Test
             width = 32;
             Assert.AreEqual(4, width/(2*4));
         }
+
+        [TestMethod]
+        public void Yolo()
+        {
+            var width = 5;
+
+            this.AAA(1,width,0);
+            this.AAA(2,width,0);
+            this.AAA(3,width,0);
+            this.AAA(4,width,0);
+            this.AAA(5,width,1);
+            this.AAA(6,width,1);
+            this.AAA(7,width,1);
+            this.AAA(8,width,1);
+            this.AAA(9,width,1);
+            this.AAA(10,width,2);
+        }
+
+        private void AAA(int a, int b, int expected)
+        {
+            var c = a/b;
+
+            Assert.AreEqual(expected, c);
+        }
         
     }
 }
